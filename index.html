@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#1f6feb">
+<title>离线英汉词典</title>
+<link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+
+<header id="topbar">
+  <div class="brand">词典</div>
+  <nav id="tabs">
+    <button class="tab active" data-tab="look">查词</button>
+    <button class="tab" data-tab="quiz">背词</button>
+    <button class="tab" data-tab="fav">收藏</button>
+    <button class="tab" data-tab="wrong">错题</button>
+    <button class="tab" data-tab="edit">编辑</button>
+  </nav>
+</header>
+
+<main id="main">
+
+  <!-- ============ 查词 ============ -->
+  <section class="page active" id="page-look">
+    <div class="searchbox">
+      <input id="lookInput" type="search" placeholder="英文单词，或中文意思（如：码头）"
+             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button id="lookBtn" class="btn primary">查</button>
+    </div>
+    <div id="lookSuggest" class="suggest"></div>
+    <div id="lookResult" class="result"></div>
+  </section>
+
+  <!-- ============ 背词 ============ -->
+  <section class="page" id="page-quiz">
+    <div class="seg" id="dirSeg">
+      <button class="segbtn active" data-dir="en2zh">英 → 中</button>
+      <button class="segbtn" data-dir="zh2en">中 → 英</button>
+    </div>
+    <div class="seg" id="scopeSeg">
+      <button class="segbtn active" data-scope="core">核心词</button>
+      <button class="segbtn" data-scope="all">全部词</button>
+      <button class="segbtn" data-scope="fav">收藏词</button>
+      <button class="segbtn" data-scope="wrong">只练错题</button>
+    </div>
+
+    <div id="quizBody">
+      <div class="empty">选好方向，点「开始」</div>
+    </div>
+  </section>
+
+  <!-- ============ 收藏 ============ -->
+  <section class="page" id="page-fav">
+    <div id="favBody"></div>
+  </section>
+
+  <!-- ============ 错题 ============ -->
+  <section class="page" id="page-wrong">
+    <div id="wrongBody"></div>
+  </section>
+
+  <!-- ============ 编辑 ============ -->
+  <section class="page" id="page-edit">
+    <div class="searchbox">
+      <input id="editInput" type="search" placeholder="要编辑的单词（不存在的会被新建）"
+             autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+      <button id="editLoadBtn" class="btn primary">载入</button>
+    </div>
+    <div id="editBody"></div>
+  </section>
+
+</main>
+
+<div id="toast" class="toast"></div>
+
+<!-- 词库：JS 文件，离线可用（file:// 下 fetch JSON 会被拦，script 不会） -->
+<script src="data/dict.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
